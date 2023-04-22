@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -17,7 +15,6 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gorselSec))
         view.addGestureRecognizer(imageGestureRecognizer)
-        
     }
     @objc func gorselSec(){
         //kütüphane git-> pickerController
@@ -25,25 +22,20 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         picker.delegate = self
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
-        //göster
+        //galeri-> göster
         present(picker, animated: true)
-        
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         //medya seçimi bitti.
         imageView.image = info[.originalImage] as? UIImage
         //açılan galeriyi kapat.
         self.dismiss(animated: true)
     }
-    
     @objc func klavyeyiKapat(){
         //aksiyonları kapat.
         view.endEditing(true)
     }
-    
     @IBAction func kaydetButtonTiklandi(_ sender: UIButton) {
         
     }
-    
 }

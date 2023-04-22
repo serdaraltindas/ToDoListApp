@@ -1,4 +1,3 @@
-
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -7,19 +6,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
         navigationController?.navigationBar.topItem?.rightBarButtonItem?.tintColor = .white
         
-        
     }
     @objc func addButtonClicked(){
         performSegue(withIdentifier: "toDetailsVC", sender: self)
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -32,4 +29,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue(withIdentifier: "toDetailsVC", sender: self)
     }
 }
+
 
