@@ -14,6 +14,7 @@
 		AED968FC29F4867600949CEB /* toDoListApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AED968FA29F4867600949CEB /* toDoListApp.xcdatamodeld */; };
 		AED968FE29F4867700949CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AED968FD29F4867700949CEB /* Assets.xcassets */; };
 		AED9690129F4867700949CEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AED968FF29F4867700949CEB /* LaunchScreen.storyboard */; };
+		AED9690A29F48AE400949CEB /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED9690929F48AE400949CEB /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AED968FD29F4867700949CEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AED9690029F4867700949CEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AED9690229F4867700949CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AED9690929F48AE400949CEB /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				AED9690829F486E200949CEB /* Delegate */,
 				AED968F529F4867600949CEB /* ViewController.swift */,
+				AED9690929F48AE400949CEB /* DetailsViewController.swift */,
 				AED968F729F4867600949CEB /* Main.storyboard */,
 				AED968FD29F4867700949CEB /* Assets.xcassets */,
 				AED968FF29F4867700949CEB /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				AED968F229F4867600949CEB /* AppDelegate.swift in Sources */,
 				AED968F429F4867600949CEB /* SceneDelegate.swift in Sources */,
 				AED968FC29F4867600949CEB /* toDoListApp.xcdatamodeld in Sources */,
+				AED9690A29F48AE400949CEB /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
