@@ -16,8 +16,14 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //close keyboard.
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(klavyeyiKapat))
+        view.addGestureRecognizer(gestureRecognizer)
         
-        
+    }
+    @objc func klavyeyiKapat(){
+        //aksiyonları kapat.
+        view.endEditing(true)
     }
     
     @IBAction func kaydetButtonTiklandi(_ sender: UIButton) {
