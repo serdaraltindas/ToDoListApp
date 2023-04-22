@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
         navigationController?.navigationBar.topItem?.rightBarButtonItem?.tintColor = .white
         
+        
     }
     @objc func addButtonClicked(){
         performSegue(withIdentifier: "toDetailsVC", sender: self)
