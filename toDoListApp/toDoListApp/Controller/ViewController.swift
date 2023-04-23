@@ -7,7 +7,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var isimDizisi = [String]()
     var idDizisi = [UUID]()
-    
+    var secilenIsim = ""
+    var secilenUUID : UUID?
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     @objc func addButtonClicked(){
+        secilenIsim = ""
         performSegue(withIdentifier: "toDetailsVC", sender: self)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +65,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = isimDizisi[indexPath.row]
         return cell
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailsVC" {
+            let destinationVC = segue.destination as! DetailsViewController
+            destinationVC.secilenUrunIsmı = secilenIsim
+            destinationVC.secilenUrunUUID = secilenUUID
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        secilenIsim = isimDizisi[indexPath.row]
+        secilenUUID = idDizisi[indexPath.row]
         performSegue(withIdentifier: "toDetailsVC", sender: self)
     }
 }
