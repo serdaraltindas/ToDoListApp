@@ -21,7 +21,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         verileriAl()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(verileriAl), name: NSNotification.Name(rawValue: "veriGirildi"), object: nil)
     }
@@ -51,7 +50,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.reloadData()
             }
         }catch{
-            
         }
     }
     @objc func addButtonClicked(){
@@ -77,6 +75,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         secilenIsim = isimDizisi[indexPath.row]
         secilenUUID = idDizisi[indexPath.row]
         performSegue(withIdentifier: "toDetailsVC", sender: self)
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //silme işlemi
+        if editingStyle == .delete {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ToDoList")
+            let uuidString = idDizisi[indexPath.row].uuidString
+            
+            fetchRequest.predicate = NSPredicate(format: "id = %@", uuidString)
+            fetchRequest.returnsObjectsAsFaults = false
+            
+            do{
+                let sonuclar = try context.fetch(fetchRequest)
+                if sonuclar.count > 0 {
+                    for sonuc in sonuclar as! [NSManagedObject] {
+                        if let id = sonuc.value(forKey: "id") as? UUID {
+                            if id == idDizisi[indexPath.row] {
+                                context.delete(sonuc)
+                                isimDizisi.remove(at: indexPath.row)
+                                idDizisi.remove(at: indexPath.row)
+                                self.tableView.reloadData()
+                                do{
+                                    try context.save()
+                                }catch{
+                                    print("ERROR!")
+                                }
+                                //döngüyü tekrara sokmamak için yapıyoruz.
+                                break
+                            }
+                            
+                        }
+                    }
+                }
+            }catch{
+                print("error!")
+            }
+        }
     }
 }
 

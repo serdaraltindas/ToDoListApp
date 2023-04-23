@@ -111,6 +111,7 @@
                         <outlet property="fiyatTextField" destination="I9F-c3-zrN" id="WpS-g2-Rfn"/>
                         <outlet property="imageView" destination="ihl-Gz-xNs" id="O7d-FF-C9v"/>
                         <outlet property="isimTextField" destination="rPm-JL-qdG" id="fjP-bm-zp6"/>
+                        <outlet property="kaydetButton" destination="UHG-np-NpN" id="a3Z-h3-rbd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fee-kq-gjk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

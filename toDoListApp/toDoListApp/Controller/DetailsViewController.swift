@@ -7,6 +7,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var fiyatTextField: UITextField!
     @IBOutlet weak var isimTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var kaydetButton: UIButton!
     
     var secilenUrunIsmı = ""
     var secilenUrunUUID : UUID?
@@ -15,6 +16,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         
         if secilenUrunIsmı != "" {
+            kaydetButton.isHidden = true
             //CoreData seçilen ürün bilgilerini göster.
             if let uuidString = secilenUrunUUID?.uuidString {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -45,11 +47,10 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }catch{
                     print("error!")
                 }
-                
-                
             }
-            
         } else {
+            kaydetButton.isHidden = false
+            kaydetButton.isEnabled = false
             isimTextField.text = ""
             bedenTextField.text = ""
             fiyatTextField.text = ""
@@ -59,8 +60,9 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(klavyeyiKapat))
         view.addGestureRecognizer(gestureRecognizer)
         
+        imageView.isUserInteractionEnabled = true
         let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gorselSec))
-        view.addGestureRecognizer(imageGestureRecognizer)
+        imageView.addGestureRecognizer(imageGestureRecognizer)
     }
     @objc func gorselSec(){
         //kütüphane git-> pickerController
@@ -75,6 +77,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         //medya seçimi bitti.
         imageView.image = info[.originalImage] as? UIImage
         //açılan galeriyi kapat.
+        kaydetButton.isEnabled = true
         self.dismiss(animated: true)
     }
     @objc func klavyeyiKapat(){
