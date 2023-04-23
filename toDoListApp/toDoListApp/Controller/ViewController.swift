@@ -18,9 +18,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationController?.navigationBar.topItem?.rightBarButtonItem?.tintColor = .white
         
         verileriAl()
-        
     }
-    func verileriAl(){
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(verileriAl), name: NSNotification.Name(rawValue: "veriGirildi"), object: nil)
+    }
+    
+    @objc func verileriAl(){
+        //Bütün dizileri temiz başlatıyoruz.
+        //Tekrarlanan veriler olmasın diye.
+        isimDizisi.removeAll(keepingCapacity: false)
+        idDizisi.removeAll(keepingCapacity: false)
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ToDoList")

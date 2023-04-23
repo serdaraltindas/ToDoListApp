@@ -55,6 +55,8 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         }catch{
             print("error!")
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "veriGirildi"), object: nil)
+        self.navigationController?.popViewController(animated: true)
         
     }//Daha sonra çekilen verileri göstereceğiz.
 }
