@@ -11,7 +11,8 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var secilenUrunIsmı = ""
     var secilenUrunUUID : UUID?
-    
+    var test = ""
+    var test2 = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
