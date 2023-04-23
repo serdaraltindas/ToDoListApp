@@ -9,7 +9,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var idDizisi = [UUID]()
     var secilenIsim = ""
     var secilenUUID : UUID?
-     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,19 +39,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         fetchRequest.returnsObjectsAsFaults = false
         do{
             let sonuclar = try context.fetch(fetchRequest)
-            for sonuc in sonuclar as! [NSManagedObject] {
-                if let isim = sonuc.value(forKey: "isim") as? String {
-                    isimDizisi.append(isim)
+            if sonuclar.count > 0 {
+                for sonuc in sonuclar as! [NSManagedObject] {
+                    if let isim = sonuc.value(forKey: "isim") as? String {
+                        isimDizisi.append(isim)
+                    }
+                    if let id = sonuc.value(forKey: "id") as? UUID {
+                        idDizisi.append(id)
+                    }
                 }
-                if let id = sonuc.value(forKey: "id") as? UUID {
-                    idDizisi.append(id)
-                }
+                tableView.reloadData()
             }
-            tableView.reloadData()
         }catch{
             
         }
-        
     }
     @objc func addButtonClicked(){
         secilenIsim = ""
