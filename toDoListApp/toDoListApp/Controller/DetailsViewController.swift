@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -36,6 +37,24 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         view.endEditing(true)
     }
     @IBAction func kaydetButtonTiklandi(_ sender: UIButton) {
+        //Burada veri çekme yani veri kaydetme yapıyoruz.
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let alisveris = NSEntityDescription.insertNewObject(forEntityName: "ToDoList", into: context)
+        alisveris.setValue(isimTextField.text, forKey: "isim")
+        alisveris.setValue(bedenTextField.text, forKey: "beden")
+        if let fiyat = Int(fiyatTextField.text!){
+            alisveris.setValue(fiyat, forKey: "fiyat")
+        }
+        alisveris.setValue(UUID(), forKey: "id")
         
-    }
+        let data = imageView.image?.jpegData(compressionQuality: 0.5)
+        alisveris.setValue(data, forKey: "gorsel")
+        do{
+            try context.save()
+        }catch{
+            print("error!")
+        }
+        
+    }//Daha sonra çekilen verileri göstereceğiz.
 }
